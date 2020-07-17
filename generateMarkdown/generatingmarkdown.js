@@ -45,8 +45,7 @@ function generateMarkdown(data, githubInfo){
     ## GitHub
     
     - ${githubInfo.name}
-    - [GitHub Profile])(${githubInfo.profile})
-    - <${githubInfo.email}>
+    - [GitHub Profile](${githubInfo.profile})
     
     `;
 }
