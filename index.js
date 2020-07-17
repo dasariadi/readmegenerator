@@ -46,3 +46,33 @@ const questions = [
         message: "Please provide all contributors to this project"
     },
 ];
+
+inquirer
+.prompt(questions)
+.then(function(data){
+    const queryURL = `https://api.github.com/users/${data.username}`;
+
+    axios.get(queryURL).then(function(res){
+
+        const githubInfo = {
+            name: res.data.name,
+            profile: res.data.html_url,
+            githubImage: res.data.avatar_url,
+            email: res.data.email,
+        };
+
+        fs.writeFile("README.md", generate(data,githubInfo), function(err){
+            if (err){
+                throw err;
+            };
+
+            console.log("The Readme file is now ready!")
+        });
+    });
+});
+
+function init(){
+
+}
+
+init();
